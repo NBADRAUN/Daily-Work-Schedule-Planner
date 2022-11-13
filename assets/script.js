@@ -6,6 +6,7 @@ var futureclass = "row time-block future"; //html id when time is future//
 var presentclass = "row time-block present"; //html id when time is present//
 var savebtn = document.getElementsByTagName("button"); //html tag tied to the save buttons///
 var textarea = document.getElementsByTagName("textarea"); //html tag name for the text area///
+var added = document.getElementById('added'); 
 hours = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18]; //hours array
 hourelement = [
   //hour elements array///
@@ -29,14 +30,19 @@ function updateTime() {
   $("#time").text(date + " " + time);
 }
 
-///functions ////
+/// function to remove the text in the header that the local storage had been updated//
+function removeupdatetext(){
+  added.innerHTML = ("");
+}
+
+///setting timer intervals ////
 setInterval(updateTime, 1000);
-setColors();
-updateTime();
+setInterval(setColors,3,600,000);
+setInterval(removeupdatetext,4000); 
+
 
 //// loop to determind if hours are less than current hour////
 function setColors() {
-  setInterval(updateTime, 60000);
   for (let i = 0; i < hours.length; i++) {
     var houriterate = hours[i];
     if (currenthour > houriterate) {
@@ -56,7 +62,9 @@ function setColors() {
 for (let i = 0; i < savebtn.length; i++) {
   savebtn[i].addEventListener("click", function () {
     localStorage.setItem(hourelement[i], textarea[i].value);
-  });
+    added.innerHTML = ("Event added/updated in local storage &#9989");
+
+});
 }
 
 /// gets item value for each text area in local storage and displays//
