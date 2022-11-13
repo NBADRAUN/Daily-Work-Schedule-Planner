@@ -1,13 +1,14 @@
 ///global variables ////
-var now = dayjs();
-var currenthour = now.format("H");
-var pastclass = "row time-block past";
-var futureclass = "row time-block future";
-var presentclass = "row time-block present";
-var savebtn = document.getElementsByTagName('button'); 
-var textarea = document.getElementsByTagName('textarea'); 
+var now = dayjs(); //current time using datjs 3rd party API /////
+var currenthour = now.format("H"); ///converts now to hour number///
+var pastclass = "row time-block past"; ///html id when time is past //
+var futureclass = "row time-block future"; //html id when time is future//
+var presentclass = "row time-block present"; //html id when time is present//
+var savebtn = document.getElementsByTagName("button"); //html tag tied to the save buttons///
+var textarea = document.getElementsByTagName("textarea"); //html tag name for the text area///
 hours = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18]; //hours array
-hourelement = [   //hour elements array///
+hourelement = [
+  //hour elements array///
   "#hour-9",
   "#hour-10",
   "#hour-11",
@@ -21,46 +22,50 @@ hourelement = [   //hour elements array///
 ];
 
 //current date and time in the header class///
-function updateTime(){ 
+function updateTime() {
   var now = dayjs();
-  var date = now.format('MMM D, YYYY'); 
-  var time = now.format('h:mm:ss A'); 
-  $('#time').text(date +' '+ time); 
+  var date = now.format("MMM D, YYYY");
+  var time = now.format("h:mm:ss A");
+  $("#time").text(date + " " + time);
 }
-setInterval(updateTime,1000); 
-setColors(); 
-updateTime(); 
 
+///functions ////
+setInterval(updateTime, 1000);
+setColors();
+updateTime();
 
 //// loop to determind if hours are less than current hour////
-function setColors(){
-for (let i = 0; i < hours.length; i++) {
-  var houriterate = hours[i];
-  if (currenthour > houriterate) {
-    $(hourelement[i]).removeClass(futureclass).addClass(pastclass);
+function setColors() {
+  setInterval(updateTime, 60000);
+  for (let i = 0; i < hours.length; i++) {
+    var houriterate = hours[i];
+    if (currenthour > houriterate) {
+      $(hourelement[i]).removeClass(futureclass).addClass(pastclass);
+    }
   }
-}
-//// loop to determine if hours are equal to current hour //////
-for (let i = 0; i < hours.length; i++) {
-  var houriterate = hours[i];
-  if (currenthour == houriterate) {
-    $(hourelement[i]).removeClass(futureclass).addClass(presentclass);
+  //// loop to determine if hours are equal to current hour //////
+  for (let i = 0; i < hours.length; i++) {
+    var houriterate = hours[i];
+    if (currenthour == houriterate) {
+      $(hourelement[i]).removeClass(futureclass).addClass(presentclass);
+    }
   }
-}
 }
 
 ///writes the text box values to the local storage ///
 for (let i = 0; i < savebtn.length; i++) {
-   savebtn[i].addEventListener("click", function() {
-    localStorage.setItem(hourelement[i],(textarea[i].value));
-   }); 
+  savebtn[i].addEventListener("click", function () {
+    localStorage.setItem(hourelement[i], textarea[i].value);
+  });
 }
-
 
 /// gets item value for each text area in local storage and displays//
 for (let i = 0; i < hourelement.length; i++) {
-  // console.log(localStorage.getItem(hourelement[i],(textarea[i].value))); 
-  textarea[i].innerHTML = localStorage.getItem(hourelement[i],(textarea[i].value)); 
+  // console.log(localStorage.getItem(hourelement[i],(textarea[i].value)));
+  textarea[i].innerHTML = localStorage.getItem(
+    hourelement[i],
+    textarea[i].value
+  );
 }
 
 //// Notes from starter Code ////
