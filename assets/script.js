@@ -37,7 +37,7 @@ function removeupdatetext(){
 
 ///setting timer intervals ////
 setInterval(updateTime, 1000);
-setInterval(setColors,3,600,000);
+setInterval(setColors,120,000);
 setInterval(removeupdatetext,4000); 
 
 

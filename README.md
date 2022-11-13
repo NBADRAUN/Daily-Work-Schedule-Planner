@@ -11,14 +11,14 @@ Also, the items saved are being stored to your local storage and are not accessi
 
 ## Usage
 
-1. Navigate to 
+1. Navigate to https://nbadraun.github.io/Daily-Work-Schedule-Planner/
 2. You will see hour blocks from 9am to 6pm.  Hour blocks that have already based your current time, will be red.  Those in the future will be green.  The hour block you are currently in will be grey.  
 3. Enter events for an hour block, then click the save icon to the right. You will see a message at the top that says the event has been saved to your local storage.  
 4. Repeat this process until all the events you would like to save have been added.  
 
 ## License
 
-There is no licence to this repository.    
+There is no license to this repository.    
 
 
 ## User Story
@@ -45,3 +45,6 @@ THEN the saved events persist <br>
 
 work-day-scheduler <br>
 <img src="assets\work-day-scheduler.PNG" alt="Picture of the Work-Day Scheduler Application.">
+
+
+
